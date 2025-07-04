@@ -1,0 +1,62 @@
+---
+const experiences = [
+  {
+    title: "CNS Communications (Alternance)",
+    dates: "Octobre 2024 - Maintenant",
+    details: [
+      "Plateforme d’observabilité sur Kubernetes (Helm, ArgoCD, Rancher)",
+      "Stack : Opentelemetry, Prometheus, Grafana, ELK",
+      "Automatisation VMware avec Ansible et AWX",
+      "Développement Python : collecteurs, analyses Jupyter"
+    ]
+  },
+  {
+    title: "CERN (Stage International)",
+    dates: "Juin - Septembre 2024",
+    details: [
+      "Administration Linux, Scripting Bash",
+      "Automatisation avec Puppet",
+      "Monitoring Prometheus + Grafana",
+      "Compression de 8 Po de données"
+    ]
+  },
+  {
+    title: "MiNET (Association)",
+    dates: "2022 - 2024",
+    details: [
+      "Infra réseau et 100+ VM sur Proxmox",
+      "Formation pour 25+ élèves",
+      "Sites hébergés : formation.minet.net, hosting.minet.net",
+      "CI/CD avec GitLab et Jenkins"
+    ]
+  },
+  {
+    title: "Freelance",
+    dates: "2024 - 2025",
+    details: [
+      "Enedis : Jeu Unity (sensibilisation écogestes)",
+      "Picquette : App Windows (contrats automatiques, Flutter)"
+    ]
+  }
+];
+---
+
+<section id="experience" class="py-20 bg-gray-100">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-indigo-600 mb-12 text-center">Expériences Professionnelles</h2>
+    <div class="border-l-4 border-indigo-600 pl-6 space-y-12">
+      {experiences.map(exp => (
+        <div class="relative">
+          <div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-indigo-600 border-2 border-white shadow"></div>
+          <h3 class="text-xl font-semibold text-gray-800">{exp.title}</h3>
+          <p class="text-sm text-gray-500 mb-2">{exp.dates}</p>
+          <ul class="list-disc list-inside text-gray-700 space-y-1">
+            {exp.details.map(detail => (
+              <li>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

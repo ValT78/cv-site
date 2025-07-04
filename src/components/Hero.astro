@@ -1,0 +1,17 @@
+---
+import HeroParticles from "./Particles.tsx";
+---
+
+<section id="hero" class="relative h-screen flex items-center justify-center text-center text-white">
+  <HeroParticles client:load />
+
+  <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-indigo-600 opacity-90"></div>
+
+  <div class="relative z-10 max-w-3xl px-4">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">Valentin Lantigny</h1>
+    <p class="text-xl md:text-2xl mb-8">Ingénieur Réseau & DevOps - Développeur passionné</p>
+    <a href="#contact" class="bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow hover:bg-gray-100 transition">
+      Me contacter
+    </a>
+  </div>
+</section>
