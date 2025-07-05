@@ -1,0 +1,38 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+const projects = [
+  {
+    title: "Cluster Kubernetes IA",
+    description: "Déploiement d’un cluster k8s avec ArgoCD, observabilité complète.",
+    tags: ["Kubernetes", "ArgoCD", "Prometheus", "Grafana"],
+    imageUrl: "/assets/k8s-cluster.png",
+    link: "https://github.com/ton-utilisateur/k8s-ia"
+  },
+  {
+    title: "Plateforme observabilité",
+    description: "Stack ELK + Opentelemetry + dashboards personnalisés.",
+    tags: ["ELK", "Grafana", "Ansible", "Python"],
+    imageUrl: "/assets/observabilite.png",
+    link: "https://github.com/ton-utilisateur/monitoring-platform"
+  },
+  {
+    title: "Jeu Unity écologique",
+    description: "Jeu de sensibilisation aux éco-gestes développé en Unity/C#.",
+    tags: ["Unity", "C#", "GameDesign"],
+    imageUrl: "/assets/unity-game.png",
+    link: "https://github.com/ton-utilisateur/ecogame"
+  }
+];
+---
+
+<section id="projects" class="py-20 bg-[#677c8d] text-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-[#f8b730] mb-12 text-center">Projets Phares</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map(proj => (
+        <ProjectCard {...proj} />
+      ))}
+    </div>
+  </div>
+</section>

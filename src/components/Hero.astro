@@ -1,16 +1,37 @@
 ---
-import HeroParticles from "./Particles.tsx";
+import Particles from "astro-particles";
+import type { ISourceOptions } from "tsparticles-engine";
+
+const options: ISourceOptions = {
+  fullScreen: { zIndex: -1 },
+  background: { color: "#2c344c" },
+  particles: {
+    number: { value: 50, density: { enable: true, area: 800 } },
+    color: { value: "#f8b730" },
+    links: { color: "#f8b730", distance: 150, enable: true, opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 2 },
+    size: { value: { min: 1, max: 5 } },
+    opacity: { value: 0.5 },
+    shape: { type: "circle" }
+  },
+  detectRetina: true
+};
 ---
 
-<section id="hero" class="relative h-screen flex items-center justify-center text-center text-white">
-  <HeroParticles client:load />
+<script>
+  import { loadFull } from "tsparticles";
+  window.particlesInit = async engine => { await loadFull(engine) };
+</script>
 
-  <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-indigo-600 opacity-90"></div>
+<section id="hero" class="relative h-screen flex items-center justify-center text-white">
+  <Particles id="tsparticles" options={options} init="particlesInit" />
+  <div class="absolute inset-0 bg-gradient-to-br from-[#677c8d] to-[#2c344c] opacity-90"></div>
 
-  <div class="relative z-10 max-w-3xl px-4">
-    <h1 class="text-5xl md:text-6xl font-bold mb-4">Valentin Lantigny</h1>
-    <p class="text-xl md:text-2xl mb-8">Ingénieur Réseau & DevOps - Développeur passionné</p>
-    <a href="#contact" class="bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow hover:bg-gray-100 transition">
+  <div class="relative z-10 max-w-3xl px-4 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">Valentin Lantigny</h1>
+    <p class="text-xl md:text-2xl mb-8">Ingénieur Réseau & DevOps – Développeur passionné</p>
+    <a href="#contact" 
+       class="bg-[#f8b730] text-[#2c344c] font-semibold py-3 px-6 rounded-full shadow hover:bg-[#f8c450] transition">
       Me contacter
     </a>
   </div>
