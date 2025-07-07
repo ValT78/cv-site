@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
+    "@astrojs/svelte": "^7.1.0",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.11.0",
     "astro-particles": "^2.10.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-tsparticles": "^2.12.2",
+    "svelte": "^5.35.2",
     "tailwindcss": "^4.1.11",
     "tsparticles": "^3.8.1",
     "typescript": "^5.8.3"

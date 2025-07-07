@@ -17,22 +17,61 @@ const options: ISourceOptions = {
   detectRetina: true
 };
 ---
+  <!-- <Particles id="tsparticles" options={options} init="particlesInit" /> -->
 
 <script>
   import { loadFull } from "tsparticles";
-  window.particlesInit = async engine => { await loadFull(engine) };
+  window.particlesInit = async (engine) => { await loadFull(engine) };
 </script>
 
-<section id="hero" class="relative h-screen flex items-center justify-center text-white">
-  <Particles id="tsparticles" options={options} init="particlesInit" />
+<section id="hero" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+  <!-- Background gradient + particles overlay -->
   <div class="absolute inset-0 bg-gradient-to-br from-[#677c8d] to-[#2c344c] opacity-90"></div>
 
-  <div class="relative z-10 max-w-3xl px-4 text-center">
-    <h1 class="text-5xl md:text-6xl font-bold mb-4">Valentin Lantigny</h1>
-    <p class="text-xl md:text-2xl mb-8">Ingénieur Réseau & DevOps – Développeur passionné</p>
-    <a href="#contact" 
-       class="bg-[#f8b730] text-[#2c344c] font-semibold py-3 px-6 rounded-full shadow hover:bg-[#f8c450] transition">
-      Me contacter
-    </a>
+  <!-- CONTENT -->
+  <div class="relative z-10 max-w-2xl mx-auto px-4 text-center animate-fade-in">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
+      Valentin Lantigny
+    </h1>
+
+    <p class="text-xl md:text-2xl mb-4 text-[#f8b730] font-medium">
+      Ingénieur Réseau & DevOps – Développeur passionné
+    </p>
+
+    <p class="text-md md:text-lg mb-6 text-[#9cccd4]">
+      Spécialisé en infrastructure, automatisation et développement d’outils sur mesure.
+      Curieux, pédagogue et toujours prêt à relever des défis.
+    </p>
+
+    <!-- Skills Badges -->
+    <div class="flex justify-center flex-wrap gap-3 mb-8">
+      <span class="bg-[#f8b730] text-[#2c344c] px-3 py-1 rounded-full shadow hover:bg-[#f8c450] transition">Kubernetes</span>
+      <span class="bg-[#9cccd4] text-[#2c344c] px-3 py-1 rounded-full shadow hover:bg-[#f8b730] transition">CI/CD</span>
+      <span class="bg-[#8c6c34] text-white px-3 py-1 rounded-full shadow hover:bg-[#677c8d] transition">Python</span>
+      <span class="bg-[#677c8d] text-white px-3 py-1 rounded-full shadow hover:bg-[#8c6c34] transition">Ansible</span>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex justify-center gap-4">
+      <a href="#projects"
+         class="bg-[#f8b730] text-[#2c344c] font-semibold py-3 px-6 rounded-full shadow hover:bg-[#f8c450] transition transform hover:scale-105">
+        Voir mes projets
+      </a>
+      <a href="#contact"
+         class="bg-[#677c8d] text-white font-semibold py-3 px-6 rounded-full shadow hover:bg-[#8c6c34] transition transform hover:scale-105">
+        Contactez moi
+      </a>
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+</style>
