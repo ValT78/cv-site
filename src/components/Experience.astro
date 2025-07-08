@@ -1,60 +1,114 @@
 ---
-const experiences = [
-  {
-    title: "CNS Communications (Alternance)",
-    dates: "Octobre 2024 - Maintenant",
-    details: [
-      "Plateforme d’observabilité sur Kubernetes (Helm, ArgoCD, Rancher)",
-      "Stack : Opentelemetry, Prometheus, Grafana, ELK",
-      "Automatisation VMware avec Ansible et AWX",
-      "Développement Python : collecteurs, analyses Jupyter"
-    ]
-  },
-  {
-    title: "CERN (Stage International)",
-    dates: "Juin - Septembre 2024",
-    details: [
-      "Administration Linux, Scripting Bash",
-      "Automatisation avec Puppet",
-      "Monitoring Prometheus + Grafana",
-      "Compression de 8 Po de données"
-    ]
-  },
-  {
-    title: "MiNET (Association)",
-    dates: "2022 - 2024",
-    details: [
-      "Infra réseau et 100+ VM sur Proxmox",
-      "Formation pour 25+ élèves",
-      "Sites hébergés : formation.minet.net, hosting.minet.net",
-      "CI/CD avec GitLab et Jenkins"
-    ]
-  },
-  {
-    title: "Freelance",
-    dates: "2024 - 2025",
-    details: [
-      "Enedis : Jeu Unity (sensibilisation écogestes)",
-      "Picquette : App Windows (contrats automatiques, Flutter)"
-    ]
-  }
-];
+import { experiences } from '../data/experiences';
+
 ---
 
-<section id="experience" class="py-20 bg-[#9cccd4] text-[#2c344c]">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-4xl font-bold text-[#8c6c34] mb-12 text-center">Expériences Professionnelles</h2>
-    <div class="border-l-4 border-[#8c6c34] pl-6 space-y-12">
+<section id="experience" class="relative py-20 bg-gradient-to-b from-[#9cccd4] to-[#677c8d] overflow-hidden">
+  <!-- Motif SVG animé en background -->
+  <svg class="absolute inset-0 w-full h-full opacity-10 animate-spin-slow" xmlns="http://www.w3.org/2000/svg">
+    <defs><pattern id="circuit" width="40" height="40" patternUnits="userSpaceOnUse">
+      <!-- Icône engrenage ou circuit board très léger -->
+      <path d="M0 20 h40 M20 0 v40" stroke="#2c344c" stroke-width="0.5"/>
+    </pattern></defs>
+    <rect width="100%" height="100%" fill="url(#circuit)" />
+  </svg>
+
+  <div class="relative max-w-4xl mx-auto px-4" x-data="{ open: null }">
+    <h2 class="text-4xl font-bold text-[#2c344c] mb-16 text-center">Expériences Professionnelles</h2>
+
+    <!-- Ligne de timeline -->
+    <div class="absolute left-1/2 transform -translate-x-1 bg-gradient-to-b from-[#8c6c34] to-[#f8b730] w-1 h-full animate-pulse"></div>
+
+    <div class="space-y-16">
+      <!-- Boucle sur chaque exp -->
       {experiences.map(exp => (
-        <div class="relative">
-          <div class="absolute -left-6 top-1 w-4 h-4 rounded-full bg-[#8c6c34] border-2 border-white shadow"></div>
-          <h3 class="text-xl font-semibold">{exp.title}</h3>
-          <p class="text-sm mb-2">{exp.dates}</p>
-          <ul class="list-disc list-inside space-y-1">
-            {exp.details.map(detail => (<li>{detail}</li>))}
-          </ul>
+        <div
+          class="relative flex flex-col md:flex-row items-center md:items-start md:space-x-8"
+          x-init="$watch('open', v => { if (v !== {exp.id}) {/* nothing */} })"
+        >
+          <!-- Point + logo entreprise -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:mr-4">
+            <div
+              class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg ring-2 ring-[#f8b730] transition-all duration-500"
+            >
+              <img src={exp.companyLogo} alt={exp.title} class="w-8 h-8"/>
+            </div>
+          </div>
+
+          <!-- Carte -->
+          <div
+            class="group relative bg-white rounded-lg shadow-lg p-6 cursor-pointer transition-transform duration-300 ease-out
+                   transform hover:scale-105 hover:rotate-1 hover:ring-4 hover:ring-[#f8b730]/50"
+            @click="open = (open === {exp.id} ? null : {exp.id})"
+          >
+            <!-- Résumé teaser -->
+            <h3 class="text-2xl font-semibold text-[#2c344c] mb-2">{exp.title}</h3>
+            <p class="text-sm text-gray-600 mb-4">{exp.dates}</p>
+            <p class="text-[#677c8d] italic">{exp.teaser}</p>
+
+            <!-- Détails / carousel si ouvert -->
+            <div
+              x-show="open === {exp.id}"
+              x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 transform -translate-y-4"
+              x-transition:enter-end="opacity-100 transform translate-y-0"
+              x-transition:leave="transition ease-in duration-200"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              class="mt-6 space-y-6"
+            >
+              {/** Alternance image/text */}
+              {exp.details.map((blk, i) => (
+                <div class={`flex flex-col md:flex-row items-center ${i % 2 ? 'md:flex-row-reverse' : ''} md:space-x-8`}>
+                  <img src={exp.images[i]} alt="" class="w-full md:w-1/2 rounded-lg shadow"/>
+                  <div class="w-full md:w-1/2 text-[#2c344c]">
+                    <p class="mb-2 font-semibold">{blk.title}</p>
+                    <p>{blk.text}</p>
+                  </div>
+                </div>
+              ))}
+
+              <!-- Ligne électrique glow -->
+              <div class="w-full h-1 bg-gradient-to-r from-[#f8b730] via-[#ffffff] to-[#f8b730] animate-glow"></div>
+            </div>
+
+            <!-- Bas de carte : tags + GitHub -->
+            <div class="mt-4 flex flex-wrap items-center justify-between">
+              <div class="flex flex-wrap gap-2">
+                {exp.tags.map(tag => (
+                  <span class="bg-[#8c6c34] text-white px-3 py-1 rounded-full text-xs font-medium shadow hover:bg-[#677c8d] transition">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={exp.githubLink}
+                target="_blank"
+                class="flex items-center gap-2 text-[#2c344c] hover:text-[#8c6c34] transition"
+              >
+                <!-- icône GitHub -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="…"/>
+                </svg>
+                <span class="underline">Voir sur GitHub</span>
+              </a>
+            </div>
+          </div>
         </div>
       ))}
     </div>
   </div>
+
+  <style>
+    @keyframes glow {
+      0%,100% { opacity: 0.6; background-position: 0% 50%; }
+      50% { opacity: 1; background-position: 100% 50%; }
+    }
+    .animate-glow {
+      background-size: 200% 100%;
+      animation: glow 2s ease-in-out infinite;
+    }
+    @keyframes spin-slow { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+    .animate-spin-slow { animation: spin-slow 60s linear infinite; }
+  </style>
 </section>

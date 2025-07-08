@@ -8,6 +8,18 @@
     "dist"
   ],
   "compilerOptions": {
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@data/*": ["src/data/*"],
+      "@layouts/*": ["src/layouts/*"]
+    },
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      },
+    ],
+    "strict": true,
+    "baseUrl": "./src",
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "typeRoots": ["node_modules/@types", "src/types"]
