@@ -1,7 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
-import Experience from "../components/Experience.astro";
+import Experience from "../components/Experience.svelte";
 import "../styles/global.css";
 import Project from "../components/Project.astro";
 ---
@@ -16,7 +16,7 @@ import Project from "../components/Project.astro";
     <Navbar />
     <main class="pt-16">
       <Hero />
-      <Experience />
+      <Experience client:load />
       <Project />
     </main>
   </body>
