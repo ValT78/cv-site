@@ -14,7 +14,7 @@
   };
 </script>
 
-<div class="relative inline-block" on:focusout={handleDropdownFocusLoss}>
+<div class="relative inline-block mx-2 transform hover:-translate-y-1 transition-transform duration-300" on:focusout={handleDropdownFocusLoss}>
   <!-- Button -->
   <button
     on:click={handleDropdownClick}
