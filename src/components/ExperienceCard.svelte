@@ -1,5 +1,7 @@
 <script lang="ts">
   import { slide } from "svelte/transition";
+  import { tweened } from 'svelte/motion';
+  import { cubicOut } from 'svelte/easing';
 
   let detailsHeight: number;
   $: containerHeight = isOpen ? detailsHeight : 0;
@@ -18,10 +20,22 @@
     companyLogo?: string;
   };
 
+  // Tweened store pour animer la largeur
+  const containerWidth = tweened(300, { duration: 300, easing: cubicOut });
+  // On initialise la largeur en fonction de l'état isOpen
+  $: {
+    if (isOpen) {
+      containerWidth.set(800); // largeur ouverte
+    } else {
+      containerWidth.set(600); // largeur fermée
+    }
+  }
 </script>
 
+<!-- Quand le bouton est cliqué, on inverse l'état isOpen -->
+
 <button 
-  on:click={() => isOpen = !isOpen} class="card {isOpen ? 'open' : ''}"
+  on:click={() => isOpen = !isOpen} style="width: {$containerWidth}px;"
 >
   <div 
   class="group relative bg-white rounded-lg shadow-lg p-6 cursor-pointer
@@ -102,13 +116,5 @@
   .animate-glow {
     background-size: 200% 100%;
     animation: glow 2s ease-in-out infinite;
-  }
-  .card .details {
-  /* width: 0; */
-  overflow: hidden;
-  transition: width 0.3s ease-out;
-  }
-  .card.open .details {
-    width: 100%; /* ou max-content, auto via JS */
   }
 </style>
