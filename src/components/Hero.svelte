@@ -1,32 +1,42 @@
 <script>
-  import Particles from "../components/Particles.svelte";
+  import Particles from './Particles.svelte';
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   
-  // États
   const typedName = writable('');
   const animationDone = writable(false);
   const fullName = "./ValentinLantigny";
-  
-  onMount(() => {
-    // Animation d'écriture du nom
-    let i = 0;
-    const typeWriter = () => {
-      if (i < fullName.length) {
-        typedName.set(fullName.substring(0, i + 1));
-        i++;
-        console.log(window.scrollY);
+  const scrollThreshold = 200; // Valeur plus grande pour permettre le défilement
+  let scrollContainer;
+  let fakeScrollHeight = 0;
 
-        setTimeout(typeWriter, 100); // Vitesse de frappe
-      } else {
+  onMount(() => {
+    // Créer un conteneur de défilement factice
+    fakeScrollHeight = scrollThreshold + window.innerHeight;
+    scrollContainer.style.height = `${fakeScrollHeight}px`;
+
+    const handleScroll = () => {
+      const scrollProgress = Math.min(window.scrollY / scrollThreshold, 1);
+      const charsToShow = Math.floor(scrollProgress * fullName.length);
+      
+      typedName.set(fullName.substring(0, charsToShow));
+
+      if (charsToShow >= fullName.length) {
         animationDone.set(true);
+        // Réduire le conteneur factice une fois l'animation terminée
+        scrollContainer.style.height = 'auto';
       }
     };
-    
-    // Démarrer l'animation après un court délai
-    setTimeout(typeWriter, 5000);
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   });
 </script>
+
+<div class="scroll-container" bind:this={scrollContainer}></div>
 
 <section id="hero" class="relative h-screen flex flex-col items-center justify-center text-white overflow-hidden">
   <!-- Background -->
@@ -38,6 +48,7 @@
   </div>
   
   <!-- Terminal -->
+   <div class="content">
   <div class="relative z-20 w-[90%] max-w-2xl mx-auto transition-all duration-1000"
        style:opacity={$animationDone ? 0 : 1}
        style:transform={$animationDone ? 'translateY(-50px)' : 'translateY(0)'}>
@@ -56,6 +67,7 @@
     <div class="mt-8 text-[#9cccd4] animate-pulse">
       ↓ Scroll pour continuer ↓
     </div>
+  </div>
   </div>
   
   <!-- Contenu principal (apparaît après animation) -->
@@ -108,5 +120,21 @@
     0% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 1; }
+  }
+  .scroll-container {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+  }
+  
+  .content {
+    position: fixed;
+    top: 200;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
   }
 </style>
