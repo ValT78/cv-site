@@ -1,22 +1,33 @@
 ---
 import Navbar from "../components/Navbar.astro";
-import Hero from "../components/Hero.astro";
+import Hero from "../components/Hero.svelte";
 import Experience from "../components/Experience.svelte";
 import "../styles/global.css";
 import Project from "../components/Project.astro";
+import ScrollHandler from "../components/ScrollHandler.svelte";
 ---
 
 <html>
   <head>
     <title>Valentin Lantigny - Site Vitrine</title>
-	<meta charset="UTF-8" />
+    <meta charset="UTF-8" />
   </head>
   <body class="scroll-smooth">
     <Navbar />
     <main class="pt-16">
-      <Hero />
+      <Hero client:load />
+      <!-- <ScrollHandler client:load /> -->
       <Experience client:load />
       <Project />
     </main>
+    
+    <!-- <script>
+      // Synchroniser l'animation avec le scroll
+      window.addEventListener('hero-scroll-complete', () => {
+        const hero = document.querySelector('#hero');
+        hero.style.height = 'auto';
+        hero.style.minHeight = '100vh';
+      });
+    </script> -->
   </body>
 </html>

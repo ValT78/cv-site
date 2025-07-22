@@ -1,21 +1,16 @@
 ---
 import Particles from "../components/Particles.svelte";
-import HeroSequence from '../components/HeroSequence.svelte';
-
 ---
 
-<HeroSequence>
-  <!-- On passe ton contenu Hero ici -->
+<section id="hero" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-[#677c8d] to-[#2c344c] opacity-90"></div>
   <div class="relative z-10 max-w-2xl mx-auto px-4 text-center animate-fade-in">
 
-  <!-- Fond Particles -->
   <div class="absolute inset-0 z-0">
     <Particles client:load />
   </div>
 
-  <!-- Overlay gradient si tu veux adoucir -->
 
-  <!-- Contenu texte -->
   <div class="relative z-10 max-w-2xl mx-auto px-4 text-center animate-fade-in">
     <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">
       Valentin Lantigny
@@ -30,7 +25,6 @@ import HeroSequence from '../components/HeroSequence.svelte';
       Curieux, pédagogue et toujours prêt à relever des défis.
     </p>
 
-    <!-- Skills Badges -->
     <div class="flex justify-center flex-wrap gap-3 mb-8">
       <span class="bg-[#f8b730] text-[#2c344c] px-3 py-1 rounded-full shadow hover:bg-[#f8c450] transition">Kubernetes</span>
       <span class="bg-[#9cccd4] text-[#2c344c] px-3 py-1 rounded-full shadow hover:bg-[#f8b730] transition">CI/CD</span>
@@ -38,7 +32,6 @@ import HeroSequence from '../components/HeroSequence.svelte';
       <span class="bg-[#677c8d] text-white px-3 py-1 rounded-full shadow hover:bg-[#8c6c34] transition">Ansible</span>
     </div>
 
-    <!-- CTA Buttons -->
     <div class="flex justify-center gap-4">
       <a href="#projects"
          class="bg-[#f8b730] text-[#2c344c] font-semibold py-3 px-6 rounded-full shadow hover:bg-[#f8c450] transition transform hover:scale-105">
@@ -51,4 +44,4 @@ import HeroSequence from '../components/HeroSequence.svelte';
     </div>
   </div>
   </div>
-</HeroSequence>
+</section>
