@@ -7,18 +7,14 @@ const navLinks = [
   { label: 'Expériences', href: '#experience', icon: '📜' }
 ];
 
-
-
 ---
-
-
-<nav class="fixed top-0 left-0 w-full bg-[#9cccd4] shadow-md z-50">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<nav class="fixed top-0 left-0 w-full bg-[#9cccd4] shadow-md z-50 h-[10vh] min-h-[48px]">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between h-full">
 
     <!-- LOGO -->
-    <div class="text-xl font-bold text-[#2c344c]">
+    <a href="/" class="text-xl font-bold text-[#2c344c] hover:text-black transition-colors">
       Valentin Lantigny
-    </div>
+    </a>
 
     <!-- Desktop Links -->
     <div class="hidden md:flex items-center space-x-4">
@@ -49,20 +45,6 @@ const navLinks = [
           { text: 'Itch', url: 'https://valt7.itch.io/' }
         ]}
       />
-
-      <!-- AUTRES LIENS Dropdown -->
-      <!-- <div class="relative dropdown">
-        <button id="autres-button"
-                class="bg-[#677c8d] text-white font-semibold py-2 px-4 rounded-full shadow hover:bg-[#8c6c34] transition duration-300">
-          Autres liens
-        </button>
-        {autresLinksOpen && (
-          <div class="absolute right-0 mt-2 w-48 bg-white border border-[#9cccd4] rounded shadow-lg py-2 z-50">
-            <a href="/CV.pdf" target="_blank" class="block px-4 py-2 text-[#2c344c] hover:bg-[#f8b730] transition">Mon CV</a>
-            <a href="https://itch.io/profile/ton-profil" target="_blank" class="block px-4 py-2 text-[#2c344c] hover:bg-[#f8b730] transition">Itch.io</a>
-          </div>
-        )}
-      </div> -->
 
       <!-- GitHub -->
       <a href="https://github.com/ValT78" target="_blank"

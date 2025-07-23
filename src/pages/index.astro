@@ -16,18 +16,9 @@ import ScrollHandler from "../components/ScrollHandler.svelte";
     <Navbar />
     <main class="pt-16">
       <Hero client:load />
-      <!-- <ScrollHandler client:load /> -->
       <Experience client:load />
       <Project />
     </main>
     
-    <!-- <script>
-      // Synchroniser l'animation avec le scroll
-      window.addEventListener('hero-scroll-complete', () => {
-        const hero = document.querySelector('#hero');
-        hero.style.height = 'auto';
-        hero.style.minHeight = '100vh';
-      });
-    </script> -->
   </body>
 </html>

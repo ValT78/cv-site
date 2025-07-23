@@ -26,9 +26,10 @@
     <div class="absolute left-1/2 transform -translate-x-1 bg-gradient-to-b from-[#8c6c34] to-[#f8b730] w-1 h-full animate-pulse"></div>
 
     <div class="space-y-16">
-      <!-- Boucle sur chaque exp -->
-      {#each experiences as exp}
-        <ExperienceCard exp={exp}/>
+      {#each experiences as exp, i}
+        <div class="flex {i % 2 === 0 ? 'justify-start' : 'justify-end'}">
+          <ExperienceCard exp={exp} />
+        </div>
       {/each}
     </div>
   </div>
