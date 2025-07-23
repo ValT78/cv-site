@@ -14,8 +14,8 @@ export const projects = [
     title: "Réseau et DevOps",
     projects: [
       {
-        title: "MiNET - Association fournissant internet à 800 adhérents",
-        description: "Une infrastructure réseau et des services web, gérés par des étudiants. J'étais <strong>responsable Web et Formations</strong>.",
+        title: "CCNA : Certification Cisco",
+        description: "Notions avancées d'architechture et de configuration réseau : TPs sur les protocoles de routage, VLANs, QoS, IPv6, etc.",
         tags: ["Linux", "Bash", "Grafana", "Puppet"],
         imageUrl: "/assets/cern-infra.png",
         link: "ahttps://github.com/ValT78/cern-automation"
