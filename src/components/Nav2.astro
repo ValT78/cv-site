@@ -1,0 +1,110 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import CircleBackgroundEffect from "@components/ui/CircleBackgroundEffect.astro";
+import Icon from "@components/ui/Icon.astro";
+import NavButton from "@components/layout/NavButton.astro";
+import NavItem from "@components/ui/NavItem.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<header class="fixed w-full z-50 text-white bg-neutral-900 lg:bg-neutral-800/50 lg:backdrop-blur-sm border-b border-neutral-700 p-4">
+    <div class="flex items-center max-w-8xl mx-auto">
+        <a class="flex items-center gap-2 overflow-hidden" href={`/${lang}/`}>
+            <span class="sr-only">MiNET</span>
+            <Icon class="h-20 w-auto fill-white" name="minet" />
+        </a>
+        {/* Large screen */}
+        <nav class="relative hidden lg:flex items-center ml-auto">
+            <ul class="flex items-center leading-8 space-x-4 text-center text-sm">
+                <NavItem href={`/${lang}/tutoriels/`} target="_self">
+                    {t('nav.tutorials')}
+                </NavItem>
+                <NavItem href={`/${lang}/equipe/`}` target="_self">
+                    {t('nav.team')}
+                </NavItem>
+                <NavItem href={`/${lang}/clubs/`} target="_self">
+                    {t('nav.clubs')}
+                </NavItem>
+                <NavItem href={`/${lang}/partenaires/`} target="_self">
+                    {t('nav.partners')}
+                </NavItem>
+                <NavItem href={`/${lang}/services/`} target="_self">
+                    {t('nav.services')}
+                </NavItem>
+                <NavItem href="https://payment.minet.net/" target='_blank'>
+                    {t('nav.subscribe')}
+                </NavItem>
+                <NavItem href="https://conferences.minet.net/" target='_blank'>
+                    {t('nav.conferences')}
+                </NavItem>
+                <NavItem href="https://status.minet.net/" target='_blank'>
+                    {t('nav.status')}
+                </NavItem>
+            </ul>
+            <CircleBackgroundEffect class="relative group flex rounded-md p-[1px] ml-8 overflow-hidden">
+                <a class="relative group p-3 font-medium rounded-md bg-sky-500 group-hover:bg-neutral-900/95 transition-colors" href="https://adh6.minet.net/" target="_blank">
+                    {t('nav.adh6')}
+                    <svg class="w-4 h-4 inline-block visible fill-current transition-transform duration-200 translate-x-0 group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+                        <path fill="currentColor" d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z"></path>
+                        <path class="transition-stroke-dashoffset duration-200 fill-current [stroke-dashoffset:10] group-hover:[stroke-dashoffset:20]" stroke-dasharray="10" stroke="currentColor" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                    <span class="absolute bottom-3 left-3 w-[calc(100%-1.5rem)] h-0.5 bg-current scale-x-0 group-hover:scale-x-100 origin-0 transition-transform duration-300"></span>
+                </a>
+                <div data-target="animation.element" class="hidden lg:block absolute bottom-0 right-0 -z-10 opacity-0 bg-gradient-radial blur-sm w-20 h-20 rounded-full transition-opacity"></div>
+            </CircleBackgroundEffect>
+        </nav>
+        {/* Mobile screen */}
+        <NavButton />
+    </div>
+    <nav id="phone-menu" aria-hidden="true" class="aria-hidden:hidden relative w-full mt-4">
+        <div class="flex flex-col items-center justify-center h-full">
+            <ul class="flex flex-col items-center justify-center leading-8 space-y-2 text-center text-sm">
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href={`/${lang}/tutoriels/`} target="_self">
+                    {t('nav.tutorials')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href={`/${lang}/equipe/`} target="_self">
+                    {t('nav.team')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href={`/${lang}/clubs/`} target="_self">
+                    {t('nav.clubs')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href={`/${lang}/partenaires/`} target="_self">
+                    {t('nav.partners')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href={`/${lang}/services/`} target="_self">
+                    {t('nav.services')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href="https://payment.minet.net/" target='_blank'>
+                    {t('nav.subscribe')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href="https://conferences.minet.net/" target='_blank'>
+                    {t('nav.conferences')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+                <NavItem href="https://status.minet.net/" target='_blank'>
+                    {t('nav.status')}
+                </NavItem>
+                <div class="w-screen h-[1px] bg-white/10"></div>
+            </ul>
+            <div class="relative group flex self-end rounded-md p-[1px] mt-4 ml-8 overflow-hidden">
+                <a class="relative group p-3 font-medium rounded-md bg-sky-500 group-hover:bg-neutral-900/95 transition-colors" href="https://adh6.minet.net/" target="_blank">
+                    {t('nav.adh6')}
+                    <svg class="w-4 h-4 inline-block visible fill-current transition-transform duration-200 translate-x-0 group-hover:translate-x-1" viewBox="0 0 16 16" fill="none">
+                        <path fill="currentColor" d="M7.28033 3.21967C6.98744 2.92678 6.51256 2.92678 6.21967 3.21967C5.92678 3.51256 5.92678 3.98744 6.21967 4.28033L7.28033 3.21967ZM11 8L11.5303 8.53033C11.8232 8.23744 11.8232 7.76256 11.5303 7.46967L11 8ZM6.21967 11.7197C5.92678 12.0126 5.92678 12.4874 6.21967 12.7803C6.51256 13.0732 6.98744 13.0732 7.28033 12.7803L6.21967 11.7197ZM6.21967 4.28033L10.4697 8.53033L11.5303 7.46967L7.28033 3.21967L6.21967 4.28033ZM10.4697 7.46967L6.21967 11.7197L7.28033 12.7803L11.5303 8.53033L10.4697 7.46967Z"></path>
+                        <path class="transition-stroke-dashoffset duration-200 fill-current [stroke-dashoffset:10] group-hover:[stroke-dashoffset:20]" stroke-dasharray="10" stroke="currentColor" d="M1.75 8H11" stroke-width="1.5" stroke-linecap="round"></path>
+                    </svg>
+                    <span class="absolute bottom-3 left-3 w-[calc(100%-1.5rem)] h-0.5 bg-current scale-x-0 group-hover:scale-x-100 origin-0 transition-transform duration-300"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>

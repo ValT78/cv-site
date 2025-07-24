@@ -1,0 +1,96 @@
+---
+interface Props {
+    class?: string;
+    perspective?: number;
+    skew?: boolean;
+}
+const { class: className, perspective, skew = false } = Astro.props;
+
+// IMPORTANT: If a circle can overflow the container, it should not responds to pointer events to avoid the animation to continue
+// if the mouse is outside the container but still inside the circle. This is due to how mouseleave event works. -> to be added in the doc
+---
+
+<div is="circle-background-effet" data-perspective={perspective} data-skew={skew && "true"} class={className}>
+    <slot />
+</div>
+
+<script>
+    import { animateTowardsTarget, computeTargetPosition } from "@libs/animations";
+    import { getElementBody, getMousePosition, getRectBody } from "@libs/utils";
+    import type { Body, Position, Speed } from "@libs/types";
+
+    class CircleAnimation extends HTMLDivElement {
+        current: Position = { x: 0, y: 0, skewX: 0, skewY: 0 };
+        target: Position = { x: 0, y: 0, skewX: 0, skewY: 0 };
+        speed: Speed = { x: 0.9, y: 0.9, skewX: 0.15, skewY: 0.15 };
+        snapTreshold: number = 0.005;
+        perspective: number | null = null;
+        frame: Body | null = null;
+        element: Body | null = null;
+        circles: NodeListOf<HTMLElement> | undefined;
+        isMobileDevice: boolean = false;
+        shouldAnimate: boolean = false;
+        isAnimating: boolean = false;
+        shouldSkew: boolean = false;
+
+        constructor() {
+            super();
+
+            this.isMobileDevice = /Mobi/i.test(navigator.userAgent);
+            this.shouldSkew = this.dataset.skew === 'true';
+            if (!this.shouldSkew) this.speed.skewX = this.speed.skewY = 0;
+            if (this.shouldSkew && this.dataset.perspective) this.perspective = parseInt(this.dataset.perspective);
+            this.frame = getRectBody(this.getBoundingClientRect());
+            this.circles = this.querySelectorAll('[data-target="animation.element"]')!;
+            this.element = getElementBody(this.circles[0]!);
+        }
+
+        connectedCallback() {
+            if (!this.isMobileDevice) {
+                this.addEventListener('mousemove', this.handleMouseMove.bind(this));
+                this.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+            }
+        }
+
+        handleMouseMove(event: MouseEvent) {
+            if (!this.shouldAnimate) this.frame = getRectBody(this.getBoundingClientRect()); // To get a DOMRect relative to the viewport
+
+            this.target = computeTargetPosition(this.frame!, getMousePosition(event), this.element!, { x: 0, y: 0 });
+            this.shouldAnimate = true;
+
+            if (!this.isAnimating) {
+                this.isAnimating = true;
+                this.shouldAnimate = true;
+                this.circles?.forEach((circle) => {
+                    circle.style.opacity = '1';
+                })
+                requestAnimationFrame(this.run.bind(this));
+            }
+        }
+
+        handleMouseLeave() {
+            this.shouldAnimate = false;
+            this.isAnimating = false;
+            this.style.transform = '';
+            this.circles?.forEach((circle) => {
+                circle.style.opacity = '0';
+            })
+        }
+
+        run() {
+            if (!this.isAnimating) return;
+            animateTowardsTarget(this.current, this.target, this.speed, this.snapTreshold, this.shouldAnimate, this.moveElements.bind(this), () => {this.isAnimating = false;});
+            requestAnimationFrame(this.run.bind(this));
+        }
+
+        moveElements(pos: Position) {
+            this.circles?.forEach((circle) => {
+                circle.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+                if (this.perspective) this.style.transform = `perspective(${this.perspective}px) rotateX(${Math.round(100*this.current.skewX!)/100}deg) rotateY(${Math.round(100*this.current.skewY!)/100}deg)`
+            });
+            this.current = pos;
+        }
+    }
+
+    customElements.define('circle-background-effet', CircleAnimation, { extends: 'div' });
+</script>
