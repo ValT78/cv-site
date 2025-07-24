@@ -15,11 +15,25 @@ export const projects = [
     projects: [
       {
         title: "CCNA : Certification Cisco",
-        description: "Notions avancées d'architechture et de configuration réseau : TPs sur les protocoles de routage, VLANs, QoS, IPv6, etc.",
+        description: "Notions avancées d'architechture et de configuration réseau : TPs sur le routage, VLANs, QoS, IPv6, etc.",
         tags: ["Linux", "Bash", "Grafana", "Puppet"],
         imageUrl: "/assets/cern-infra.png",
         link: "ahttps://github.com/ValT78/cern-automation"
       },
+      {
+        title: "Cours Docker + CKA",
+        description: "Cours et labs sur Udemy : notion avancées sur les Container Docker et Kubernetes",
+        tags: ["Docker", "Kubernetes", "Helm"],
+        imageUrl: "/assets/cern-infra.png",
+        link: "ahttps://github.com/ValT78/cern-automation"
+      },
+      {
+        title: "MLOps et gestion de mon cluster Kube",
+        description: "Des thésards en IA ont fait appel à moi pour déployer un cluster de GPU sur Kubernetes. Le but est de créer des pipelines pour automatiser l'entraînement de modèles IA, et la construction automatique d'image Docker.<br>Cela m'a appris à monter mon propre cluster, et le mettre au service d'autrui pour cimplifier leur quotidien.",
+        tags: ["Kubernetes", "Bash", "Grafana", "Puppet"],
+        imageUrl: "/assets/cern-infra.png",
+        link: "ahttps://github.com/ValT78/cern-automation"
+      }
     ],
   },
   {
