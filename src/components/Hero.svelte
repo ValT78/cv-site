@@ -6,21 +6,22 @@
   const typedName = writable('');
   const animationDone = writable(false);
   const fullName = "./ValentinLantigny        ";
-  const scrollThreshold = 400; // Valeur plus grande pour permettre le défilement
   let scrollContainer;
   let fakeScrollHeight = 0;
 
   onMount(() => {
+    const scrollThreshold = window.innerHeight; // Ajuster selon la vitesse de défilement souhaitée
+
     // Créer un conteneur de défilement factice
-    fakeScrollHeight = scrollThreshold + window.innerHeight;
-    scrollContainer.style.height = `${fakeScrollHeight}px`;
-    const scrollProgress = Math.min(window.scrollY / scrollThreshold, 1);
-    const charsToShow = Math.floor(scrollProgress * fullName.length);
-    if (charsToShow >= fullName.length) {
-        animationDone.set(true);
-        // Réduire le conteneur factice une fois l'animation terminée
-        // scrollContainer.style.height = 'auto';
-      }
+    // fakeScrollHeight = scrollThreshold + window.innerHeight;
+    // scrollContainer.style.height = `0px`;
+    // const scrollProgress = Math.min(window.scrollY / scrollThreshold, 1);
+    // const charsToShow = Math.floor(scrollProgress * fullName.length);
+    // if (charsToShow >= fullName.length) {
+    //     animationDone.set(true);
+    //     // Réduire le conteneur factice une fois l'animation terminée
+    //     // scrollContainer.style.height = 'auto';
+    //   }
 
     const handleScroll = () => {
       const scrollProgress = Math.min(window.scrollY / scrollThreshold, 1);
@@ -48,29 +49,28 @@
 
 <div class="scroll-container" bind:this={scrollContainer}></div>
 
-<section id="hero" class="relative h-[170vh] flex flex-col items-center justify-center text-white overflow-hidden">
+<section id="hero" class="relative h-[200vh] flex flex-col justify-center text-white overflow-hidden">
   <!-- Background -->
-  <div class="absolute inset-0 bg-gradient-to-br from-[#677c8d] to-[#2c344c] opacity-90"></div>
-  
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-blue-800 opacity-90"></div>
+
   <!-- Particules -->
   <div class="absolute inset-0 z-0">
     <Particles/>
   </div>
   
   <!-- Terminal -->
-  <div class="left-1/2 -translate-x-1/2 -translate-y-3/4 w-full fixed flex justify-center pointer-events-none">
-    <div class="relative z-20 w-[90%] max-w-2xl mx-auto transition-all duration-500 pointer-events-auto"
+  <div class="w-full fixed flex pointer-events-none top-0 mt-128">
+    <div class="relative z-20 w-[90%] mx-auto transition-all duration-500 pointer-events-auto"
          style:opacity={$animationDone ? 0 : 1}
          style:transform={$animationDone ? 'translateY(-50px)' : 'translateY(0)'}>
       <div class="terminal bg-[#1e1e1e] p-6 rounded-lg shadow-2xl">
-        <div class="command text-[#4EC9B0] mb-4">
+        <div class="command text-blue-400 mb-4">
           $ kubectl get pods
         </div>
-        <div class="response text-[#DCDCAA]">
-          NAME&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;READY&emsp;STATUS&emsp;RESTARTS&emsp;AGE<br>
-          scroll-to-load-containers&emsp;1/1&emsp;Running&emsp;0&emsp;&emsp;1d
+        <div class="response text-amber-200">
+          Network Error: scroll more to continue...
         </div>
-        <div class="typing mt-4 text-[#4EC9B0]">
+        <div class="typing mt-4 text-blue-400">
           $ {$typedName}<span class="cursor-blink">▋</span>
         </div>
       </div>
@@ -105,7 +105,7 @@
             Voir mes projets
           </a>
           <a href="#contact"
-             class="bg-[#677c8d] text-white font-semibold py-3 px-6 rounded-full shadow hover:bg-[#8c6c34] transition transform hover:scale-105">
+             class="bg-[#2B464E] text-white font-semibold py-3 px-6 rounded-full shadow hover:bg-[#8c6c34] transition transform hover:scale-105">
             Contactez moi
           </a>
         </div>
