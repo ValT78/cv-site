@@ -2,75 +2,86 @@
   import Particles from './Particles.svelte';
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
+
   
   const typedName = writable('');
   const animationDone = writable(false);
   const fullName = "./ValentinLantigny        ";
-  let scrollContainer;
-  let fakeScrollHeight = 0;
+  let scrollLocked = false;
+  let scrollY = 0; // **Obligatoire**
+
+  let lastY = 0;
+
+  function disableScroll() {
+    const x = window.scrollX;
+    window.onscroll = () => window.scrollTo(x, lastY);
+    scrollLocked = true;
+  }
+  
+  function enableScroll() {
+    window.onscroll = null;
+    scrollLocked = false;
+    console.log("Scroll enabled");
+  }
 
   onMount(() => {
-    const scrollThreshold = window.innerHeight; // Ajuster selon la vitesse de défilement souhaitée
+    // if (scrollY > window.innerHeight * 1.5) {
+    //   animationDone.set(true);
+    //   typedName.set(fullName);
+    //   return;
+    // }
 
-    // Créer un conteneur de défilement factice
-    // fakeScrollHeight = scrollThreshold + window.innerHeight;
-    // scrollContainer.style.height = `0px`;
-    // const scrollProgress = Math.min(window.scrollY / scrollThreshold, 1);
-    // const charsToShow = Math.floor(scrollProgress * fullName.length);
-    // if (charsToShow >= fullName.length) {
-    //     animationDone.set(true);
-    //     // Réduire le conteneur factice une fois l'animation terminée
-    //     // scrollContainer.style.height = 'auto';
-    //   }
+    const threshold = window.innerHeight * 1.2;
 
-    const handleScroll = () => {
-      const scrollProgress = Math.min(window.scrollY / scrollThreshold, 1);
-      const charsToShow = Math.floor(scrollProgress * fullName.length);
-      
-      typedName.set(fullName.substring(0, charsToShow));
+    const handle = () => {
+      if (scrollLocked) return;
+      const y = scrollY;
+      lastY = y;
+      if (!$animationDone) {
+        const prog = Math.min(y / threshold, 1);
+        const chars = Math.floor(prog * fullName.length);
+        typedName.set(fullName.substring(0, chars));
 
-      if (charsToShow >= fullName.length) {
-        animationDone.set(true);
-        // Réduire le conteneur factice une fois l'animation terminée
-        // scrollContainer.style.height = 'auto';
+        if (chars >= fullName.length) {
+          animationDone.set(true);
+          disableScroll();
+          setTimeout(enableScroll, 1000);
+        }
       }
-      else {
-        animationDone.set(false);
+      else if (y < threshold) {
+        animationDone.set(false);const prog = Math.min(y / threshold, 1);
+        const chars = Math.floor(prog * fullName.length);
+        typedName.set(fullName.substring(0, chars));
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    window.addEventListener('scroll', handle);
+    return () => window.removeEventListener('scroll', handle);
   });
 </script>
 
-<div class="scroll-container" bind:this={scrollContainer}></div>
+<svelte:window bind:scrollY={scrollY} />
 
-<section id="hero" class="relative h-[200vh] flex flex-col justify-center text-white overflow-hidden">
+<section id="hero" class="relative h-[220vh] flex flex-col justify-center text-white overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-blue-800 opacity-90"></div>
 
   <!-- Particules -->
-  <div class="absolute inset-0 z-0">
-    <Particles/>
-  </div>
+  
   
   <!-- Terminal -->
-  <div class="w-full fixed flex pointer-events-none top-0 mt-128">
+  <div class="w-full fixed flex pointer-events-none top-0 mt-128 z-20">
     <div class="relative z-20 w-[90%] mx-auto transition-all duration-500 pointer-events-auto"
          style:opacity={$animationDone ? 0 : 1}
          style:transform={$animationDone ? 'translateY(-50px)' : 'translateY(0)'}>
       <div class="terminal bg-[#1e1e1e] p-6 rounded-lg shadow-2xl">
-        <div class="command text-blue-400 mb-4">
+        <div class="text-blue-400 mb-4 text-3xl">
           $ kubectl get pods
         </div>
-        <div class="response text-amber-200">
-          Network Error: scroll more to continue...
+        <div class="text-3xl">
+          <span class="text-red-800">Network Error: </span><span class="ml-2 "> scroll more to continue...</span>
         </div>
-        <div class="typing mt-4 text-blue-400">
+        <div class="mt-4 text-blue-400 text-3xl">
           $ {$typedName}<span class="cursor-blink">▋</span>
         </div>
       </div>
@@ -81,9 +92,9 @@
   </div>
   
   <!-- Contenu principal (apparaît après animation) -->
-  <div class="relative z-10 w-full max-w-2xl mx-auto mt-auto mb-64 px-4 text-center transition-all duration-1000"
+  <div class="relative z-10 w-full mx-auto mt-auto mb-64 px-4 text-center transition-all duration-1000"
        style:opacity={$animationDone ? 1 : 0}
-       style:transform={$animationDone ? 'translateY(0)' : 'translateY(800px)'}>
+       style:transform={$animationDone ? 'translateY(0)' : 'translateY(1000px)'}>
     {#if $animationDone}
       <div class="animate-fade-in">
         <h1 class="text-5xl md:text-6xl font-bold drop-shadow-lg">
@@ -130,13 +141,6 @@
     0% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 1; }
-  }
-  .scroll-container {
-    position: absolute;
-    width: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0;
   }
   
 </style>

@@ -35,7 +35,7 @@
 <!-- Quand le bouton est cliqué, on inverse l'état isOpen -->
 
 <button 
-  on:click={() => isOpen = !isOpen} style="width: {$containerWidth}px;"
+  on:click={() => isOpen = !isOpen} style="width: {$containerWidth}px;" class="z-20"
 >
   <div 
   class="group relative bg-white rounded-lg shadow-lg p-6 cursor-pointer

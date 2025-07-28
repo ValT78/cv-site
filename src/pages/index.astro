@@ -4,17 +4,25 @@ import Hero from "../components/Hero.svelte";
 import Experience from "../components/Experience.svelte";
 import "../styles/global.css";
 import Project from "../components/Project.astro";
-import ScrollHandler from "../components/ScrollHandler.svelte";
+import Particles from "../components/Particles.svelte";
 ---
 
+
+
+<!DOCTYPE html>
 <html>
   <head>
     <title>Valentin Lantigny - Site Vitrine</title>
     <meta charset="UTF-8" />
+		<meta name="description" content="Site web de MiNET">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no,minimum-scale=1"/>
   </head>
-  <body class="scroll-smooth">
+  <body class="scroll-smooth min-h-screen">
     <Navbar />
     <main>
+      <div class="absolute z-10">
+        <Particles client:load />
+      </div>
       <Hero client:load />
       <Experience client:load />
       <Project />

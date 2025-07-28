@@ -8,11 +8,25 @@ const navLinks = [
   { label: 'Projets', href: '#projects', icon: '🛠️' },
 ];
 ---
-<header class="fixed top-0 left-0 w-full bg-gray-800 shadow-md z-50 h-[12vh] min-h-[48px] lg:backdrop-blur-sm">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between h-full">
+<script type="module">
+  document.addEventListener('click', (e) => {
+    const nav = document.querySelector('#top-bar');
+    const dropdownContact = document.querySelector('#dropdown-contact');
+    const dropdownLinks = document.querySelector('#dropdown-links');
+    const button = document.querySelector('button[is="nav-button"]');
+    const expanded = button && button.expanded;
+
+    if (expanded && !nav.contains(e.target) && !dropdownContact.contains(e.target) && !dropdownLinks.contains(e.target)) {
+        button.click();
+    }
+  });
+</script>
+
+<header class="fixed top-0 left-0 w-full bg-gray-800 opacity-97 shadow-md z-50 h-[12vh] min-h-[48px] lg:backdrop-blur-sm">
+  <div id="top-bar" class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between h-full">
 
     <!-- LOGO -->
-    <a href="/" class="font-bold text-blue-500 hover:text-amber-400 transition-colors text-xl sm:text-2xl lg:text-3xl">
+    <a href="/" class="font-bold text-blue-500 hover:text-amber-400 transition-colors text-3xl">
       Valentin Lantigny
     </a>
 
@@ -74,16 +88,17 @@ const navLinks = [
           </a>
         ))}
 
-
-        <Dropdown client:load
+          <div id="dropdown-contact">
+        <Dropdown client:load 
           mainText="Contactez moi"
           subTexts={[
             { text: 'Email', url: 'mailto:v.lantigny@gmail.com' },
             { text: 'LinkedIn', url: 'https://linkedin.com/in/valentin-lantigny' }
           ]}
         />  
+          </div>
 
-
+        <div id="dropdown-links">
         <Dropdown client:load
           mainText="Autres Liens"
           subTexts={[
@@ -91,8 +106,10 @@ const navLinks = [
             { text: 'Itch', url: 'https://valt7.itch.io/' }
           ]}
         />
+      </div>
+      
       </ul>
-        <div class="w-screen h-[1px] bg-white/10"></div>
+        <div class="w-screen h-[1px] bg-white/10 mt-1"></div>
 
       <!-- GitHub -->
       <div class="flex justify-center mt-4 mb-4">

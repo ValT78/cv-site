@@ -14,7 +14,7 @@
   };
 </script>
 
-<div class="relative inline-block mx-2 my-1 transform hover:-translate-y-1 transition-transform duration-300" on:focusout={handleDropdownFocusLoss}>
+<div class="relative flex lg:inline-block mx-2 my-1 transform hover:-translate-y-1 transition-transform duration-300" on:focusout={handleDropdownFocusLoss}>
   <!-- Button -->
   <button
     on:click={handleDropdownClick}
@@ -43,7 +43,13 @@
   <!-- Dropdown menu -->
   {#if isDropdownOpen}
     <ul
-      class="absolute right-0 mt-2 w-48 bg-sky-200 border border-gray-800 rounded-lg shadow-lg divide-y divide-gray-800 animate-fade-slide"
+      class="absolute lg:right-0 lg:mt-2 lg:w-48 lg:bg-sky-200 lg:border lg:border-gray-800 lg:rounded-lg lg:shadow-lg lg:divide-y lg:divide-gray-800
+                right-[-0.5rem] top-full mt-0 w-48 bg-sky-200 border border-gray-800 rounded-lg shadow-lg divide-y divide-gray-800
+                animate-fade-slide
+                lg:top-auto lg:left-auto
+                md:right-[-0.5rem] md:top-0 md:left-full md:mt-0 md:translate-x-2
+                "
+      style="z-index:1000;"
       aria-labelledby="dropdownButton">
       {#each subTexts as sub}
         <li>

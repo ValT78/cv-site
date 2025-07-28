@@ -1,5 +1,4 @@
 <script lang="ts">
-     import { onMount } from 'svelte';
   import { particlesInit } from '@tsparticles/svelte';
   import { loadSlim } from '@tsparticles/slim';
     import Particles from '@tsparticles/svelte';
