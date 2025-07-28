@@ -1,18 +1,30 @@
-export const jeux = [
-  {
-    id: 'cell',
-    title: "Jeu de sensibilisation aux éco-gestes",
-    description: "Un jeu éducatif pour sensibiliser aux éco-gestes.",
-    tags: ["Unity", "C#", "GameDesign"],
-    imageUrl: "/assets/unity-game.png",
-    link: "https://github.com/ton-utilisateur/ecogame"
-  }
-];
 
 export const projects = [
   {
     title: "Réseau et DevOps",
     projects: [
+  {
+    id: 'formations',
+    title: "Site d'hébergement des formations",
+    teaser: "J'ai réalisé ce site connecté à notre Nextcloud qui affiche les formations (j'en ai réalisé certaines)",
+    imageUrl: '/logos/md.png',
+    tags: ['Frontend', 'Astro', 'Backend', 'Python', 'CICD Gitlab', 'nginx'],
+    githubLink: 'https://github.com/ValT78/Contrapp',
+    images: [
+      '/exp/cern-infra.png',
+      '/exp/cern-dataflow.png'
+    ],
+    details: [
+      {
+        title: "Premier stage formateur",
+        text: "J'ai assisté l'équipe informatique dans ces tâches quotidiennes :<br>Gestion des incidents, supervision de l'infrastructure et gestion des sauvegardes.",
+      },
+      {
+        title: 'Missions réalisées',
+        text: "J'ai pris part au remplacement des switches réseau, configuré des PCs d'usine, et participé à la migration de l'intranet vers <u>Sharepoint</u> en utilisant <u>Powershell</u>.",
+      }
+    ]
+  }
       {
         title: "CCNA : Certification Cisco",
         description: "Notions avancées d'architechture et de configuration réseau : TPs sur le routage, VLANs, QoS, IPv6, etc.",
