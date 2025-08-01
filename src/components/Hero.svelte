@@ -1,14 +1,13 @@
 <script>
-  import Particles from './Particles.svelte';
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
 
   
   const typedName = writable('');
-  const animationDone = writable(false);
+  const animationDone = writable(true);
   const fullName = "./ValentinLantigny        ";
   let scrollLocked = false;
-  let scrollY = 0; // **Obligatoire**
+  let scrollY = 0;
 
   let lastY = 0;
 
@@ -25,13 +24,17 @@
   }
 
   onMount(() => {
-    // if (scrollY > window.innerHeight * 1.5) {
-    //   animationDone.set(true);
-    //   typedName.set(fullName);
-    //   return;
-    // }
-
     const threshold = window.innerHeight * 1.2;
+
+    if (scrollY > threshold) {
+      animationDone.set(true);
+      typedName.set(fullName);
+    }
+    else {
+      animationDone.set(false);
+      typedName.set('');
+    }
+
 
     const handle = () => {
       if (scrollLocked) return;
@@ -62,7 +65,7 @@
 
 <svelte:window bind:scrollY={scrollY} />
 
-<section id="hero" class="relative h-[220vh] flex flex-col justify-center text-white overflow-hidden">
+<section id="hero" class="relative h-[240vh] flex flex-col justify-center text-white overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-blue-800 opacity-90"></div>
 
@@ -70,7 +73,7 @@
   
   
   <!-- Terminal -->
-  <div class="w-full fixed flex pointer-events-none top-0 mt-128 z-20">
+  <div class="w-full fixed flex pointer-events-none top-0 mt-[40vh] z-20">
     <div class="relative z-20 w-[90%] mx-auto transition-all duration-500 pointer-events-auto"
          style:opacity={$animationDone ? 0 : 1}
          style:transform={$animationDone ? 'translateY(-50px)' : 'translateY(0)'}>
@@ -92,7 +95,7 @@
   </div>
   
   <!-- Contenu principal (apparaît après animation) -->
-  <div class="relative z-10 w-full mx-auto mt-auto mb-64 px-4 text-center transition-all duration-1000"
+  <div class="relative z-20 w-full mx-auto mt-auto mb-64 px-4 text-center transition-all duration-1000"
        style:opacity={$animationDone ? 1 : 0}
        style:transform={$animationDone ? 'translateY(0)' : 'translateY(1000px)'}>
     {#if $animationDone}
@@ -101,7 +104,7 @@
           Valentin Lantigny
         </h1>
 
-        <p class="text-xl md:text-2xl mb-4 text-[#f8b730] font-medium">
+        <p class="text-xl md:text-2xl mb-4 text-amber-400 font-medium">
           Ingénieur Réseau & DevOps – Développeur passionné
         </p>
 
@@ -112,7 +115,7 @@
 
         <div class="flex justify-center gap-4">
           <a href="#projects"
-             class="bg-[#f8b730] text-[#2c344c] font-semibold py-3 px-6 rounded-full shadow hover:bg-[#f8c450] transition transform hover:scale-105">
+             class="bg-amber-400 text-[#2c344c] font-semibold py-3 px-6 rounded-full shadow hover:bg-[#f8c450] transition transform hover:scale-105">
             Voir mes projets
           </a>
           <a href="#contact"

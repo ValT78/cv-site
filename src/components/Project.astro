@@ -1,13 +1,14 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
-import { projects } from "../data/projets.ts";
+import { projects } from "../data/projects.ts";
 
 ---
 
-<section id="projects" class="py-20 bg-gradient-to-br from-gray-800 to-blue-800 text-white">
-  <div class="max-w-6xl mx-auto px-4">
+<section id="projects" class="relative py-20 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-blue-800 opacity-90"></div>
+  <div class="relative max-w-6xl mx-auto px-4">
     {projects.map(section => (
-    <h2 class="text-4xl font-bold text-[#f8b730] mb-12 text-center">{section.title}</h2>
+    <h2 class="text-4xl font-bold text-white my-12 text-center">{section.title}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 z-20">
             {section.projects.map(proj => (
 
