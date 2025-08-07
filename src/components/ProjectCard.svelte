@@ -14,34 +14,70 @@
   let isOpen = false;
   const open = () => isOpen = true;
   const close = () => isOpen = false;
+
+  const handleDropdownFocusLoss = (event: FocusEvent) => {
+    const relatedTarget = event.relatedTarget as HTMLElement | null;
+    const currentTarget = event.currentTarget as HTMLElement;
+    if (relatedTarget && currentTarget.contains(relatedTarget)) return;
+    isOpen = false;
+  };
+
 </script>
 
-<!-- Carte projet façon dossier macOS -->
-<!-- Carte projet façon dossier macOS améliorée -->
-<div class="flex flex-col items-center w-2/3 sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2 mx-auto text-center">
-  <button
-    class="relative w-full bg-yellow-300 rounded-lg shadow-xl border border-yellow-600 hover:rotate-[-1.5deg] hover:scale-105 transition-transform duration-300"
-    on:click={open}
-  >
-    <!-- Étiquette "Dossier" -->
-    <div class="absolute top-1 left-1 bg-yellow-600 text-white text-[10px] px-2 py-0.5 rounded-full shadow">Dossier</div>
+<div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-4 mx-auto text-center">
+  <div class="relative [perspective:800px] w-full h-auto group">
+    <div>
+      <!-- facade avant (clapet) -->
+      <div
+        class="absolute left-1/2 -translate-x-1/2 -translate-y-4 h-8 w-[calc(100%-1rem)] bg-gradient-to-b from-yellow-400 to-yellow-400 rounded-t-lg shadow-inner transition-transform duration-500 group-hover:translate-x-2 group-hover:rotate-45 origin-bottom"
+      ></div>
+              <!-- style="transform: translateX(-2px) rotateX(-30deg); z-index: 0;" -->
 
-    <!-- Image en haut -->
-    <img src={proj.imageUrl} alt="preview" class="w-full h-40 object-cover rounded-t-lg" />
+      <!-- facade latérale (épaisseur) -->
+      <!-- <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 h-full bg-gradient-to-b from-yellow-300 to-yellow-500 rounded-tr-lg shadow-inner transition-transform duration-500 group-hover:translate-x-[80px] group-hover:-rotate-y-12"
+        style="transform-origin:0 50%; transform:translateX(75px) translateZ(-8px) rotateY(-90deg);
+               box-shadow: 0 -1px 1px rgba(0,0,0,0.15), inset 0 0 4px rgba(0,0,0,0.1);"
+      ></div> -->
+      <!-- <div class="absolute p-4 flex flex-col justify-between z-30 w-20 h-20 -top-30"></div> -->
+    </div>
+    <button
+      class="relative block m-auto bg-yellow-300 border border-yellow-500 shadow-lg rounded-xl overflow-visible focus:outline-none [transform-style:preserve-3d] transition-all duration-500 group-hover:rotate-[-1.5deg] group-hover:scale-105"  
+      on:click={open} on:focusout={handleDropdownFocusLoss} tabindex="0"
+      style="box-shadow: 0 4px 16px rgba(140,108,52,0.12);"
+    >
+
+      
+      
+
+    <!-- Étiquette "Dossier" + icône -->
+    <div class="absolute top-3 left-3 flex items-center gap-1 bg-yellow-700/80 backdrop-blur text-white text-xs px-3 py-1 rounded-full shadow-lg z-20">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" class="inline-block mr-1">
+        <path d="M2 6a2 2 0 012-2h4l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+      </svg>
+    </div>
+
+    <!-- Image en haut (comme une vignette dans le dossier) -->
+    <div class="w-full aspect-video overflow-hidden rounded-t-lg p-6 bg-yellow-200 border-b border-yellow-400 z-20">
+      <img src={proj.imageUrl} alt="preview" class="w-full transition-transform duration-300 group-hover:scale-105 rounded shadow" />
+    </div>
 
     <!-- Contenu du projet -->
-    <div class="p-3 text-left space-y-1">
-      <h3 class="text-sm font-bold text-gray-800">{proj.title}</h3>
-      <p class="text-xs text-gray-600 line-clamp-3">{@html proj.teaser}</p>
+    <div class="p-5 text-left space-y-2 bg-yellow-50 rounded-b-xl border-t border-yellow-200">
+      <h3 class="text-base font-bold text-yellow-900">{proj.title}</h3>
+      <p class="text-sm text-yellow-800 line-clamp-3">{@html proj.teaser}</p>
 
-      <div class="flex flex-wrap gap-1 mt-1">
+      <div class="flex flex-wrap gap-2 mt-2">
         {#each proj.tags as tag}
-          <span class="bg-white border border-yellow-600 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full">{tag}</span>
+          <span class="bg-gradient-to-r from-yellow-700 via-yellow-500 to-yellow-400 text-white text-xs font-semibold px-3 py-1 rounded-full shadow hover:scale-120 hover:bg-yellow-800 hover:bg-none transition-transform duration-200 cursor-pointer">
+            {tag}
+          </span>
         {/each}
       </div>
     </div>
   </button>
-  <span class="text-[10px] text-center text-gray-400 mt-1">(Cliquer pour ouvrir)</span>
+  </div>
+  <span class="text-xs text-gray-400 mt-2 italic">(Cliquer pour ouvrir)</span>
 </div>
 
 {#if isOpen}

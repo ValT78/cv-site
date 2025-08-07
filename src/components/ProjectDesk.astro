@@ -16,12 +16,12 @@ import ProjectCard from './ProjectCard.svelte';
     <rect width="100%" height="100%" fill="url(#grid)" />
   </svg>
 
-  <div class="relative max-w-5xl mx-auto px-4 z-20">
+  <div class="relative max-w-8xl mx-auto px-4 z-20">
     <h2 class="text-4xl font-bold text-white mb-16 text-center">Projets Personnels</h2>
 
     {projects.map((group: { title: unknown; projects: any[]; }) => (
       <div class="mb-12">
-        <h3 class="text-3xl font-semibold text-amber-400 mb-6">{group.title}</h3>
+        <h3 class="text-3xl font-semibold text-center text-amber-400 mb-6">{group.title}</h3>
         <div class="flex flex-wrap gap-6">
           {group.projects.map(proj => (
             <ProjectCard proj={proj} client:load />
