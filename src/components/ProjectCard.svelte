@@ -24,7 +24,7 @@
 
 </script>
 
-<div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-4 mx-auto text-center">
+<div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-4 mx-auto text-center mt-5">
   <div class="relative [perspective:800px] w-full group">
     <div
     class="transition-transform duration-500 group-hover:-translate-y-10 group-hover:-rotate-5 "
@@ -76,47 +76,73 @@
 </div>
 
 {#if isOpen}
-  <!-- Overlay avec animation d'apparition -->
-  <div class="fixed inset-0 bg-black/50 z-40 flex items-center justify-center p-4 animate-fade-in mt-[10vh]">
-    <!-- Fenêtre macOS -->
-    <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden animate-scale-in">
-      <!-- Barre de titre macOS -->
-      <div class="flex items-center h-8 px-3 bg-gray-100 border-b border-gray-200">
+  <!-- Overlay moderne -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <div
+    class="fixed inset-0 bg-black/50 z-40 flex items-start justify-center p-4 backdrop-blur-sm animate-fade-in mt-[11vh]"
+    on:click|self={close}
+  >
+    <div
+      class="relative bg-yellow-50 rounded-xl shadow-2xl w-full max-w-2xl overflow-hidden animate-scale-up"
+      style="border:2px solid rgba(140,108,52,0.3);"
+    >
+      <!-- barre titre macOS customisée -->
+      <div class="flex items-center h-8 px-4 bg-gradient-to-r from-yellow-200 to-yellow-300 border-b border-yellow-400">
         <div class="flex space-x-2">
           <span class="w-3 h-3 bg-red-500 rounded-full"></span>
           <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
           <span class="w-3 h-3 bg-green-500 rounded-full"></span>
         </div>
-        <h3 class="flex-1 text-center text-sm font-medium select-none">{proj.title}</h3>
-        <button class="text-gray-500 hover:text-gray-800" on:click={close}>✕</button>
+        <h3 class="flex-1 text-center text-sm font-semibold text-yellow-900 select-none truncate">{proj.title}</h3>
+        <button
+          class="text-yellow-800 hover:text-yellow-900 transition-colors"
+          on:click={close}
+        >
+          ✕
+        </button>
       </div>
 
-      <!-- Contenu interne -->
-      <div class="p-6 overflow-y-auto max-h-[80vh] space-y-6">
+      <!-- contenu interne avec scrollbar custom -->
+      <div class="p-6 overflow-y-auto max-h-[80vh] space-y-6 scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-yellow-100">
+        <!-- aperçu -->
         <div class="flex items-center space-x-4">
-          <img src={proj.imageUrl} alt="preview" class="w-16 h-16 object-contain rounded" />
-          <p class="italic text-gray-700">{@html proj.teaser}</p>
+          <img src={proj.imageUrl} alt="preview" class="w-20 h-20 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105" />
+          <p class="italic text-yellow-800 flex-1 leading-relaxed">{@html proj.teaser}</p>
         </div>
 
+        <!-- tags animés -->
         <div class="flex flex-wrap gap-2">
           {#each proj.tags as tag}
-            <span class="bg-[#8c6c34] text-white text-xs px-2 py-1 rounded-full animate-pulse/50 hover:animate-pulse">{tag}</span>
+            <span class="bg-gradient-to-r from-yellow-700 to-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow animate-fade-in hover:scale-110 transition-transform duration-200 cursor-pointer">
+              {tag}
+            </span>
           {/each}
         </div>
 
-        <a href={proj.link} target="_blank" class="underline text-[#8c6c34] hover:text-yellow-700 inline-block transition-colors">
+        <!-- lien stylisé -->
+        <a
+          href={proj.link}
+          target="_blank"
+          class="inline-block font-medium text-yellow-800 underline-offset-2 hover:underline transition-all"
+        >
           Voir le site →
         </a>
 
-        <div class="space-y-6">
+        <!-- sections détaillées -->
+        <div class="space-y-8">
           {#each proj.details as detail, i}
-            <div class="md:flex md:space-x-4 items-start">
+            <div class="md:flex md:space-x-6 items-start">
               {#if proj.images[i]}
-                <img src={proj.images[i]} alt="" class="w-full md:w-1/3 rounded shadow-lg hover:scale-105 transition-transform" />
+                <img
+                  src={proj.images[i]}
+                  alt=""
+                  class="w-full md:w-1/3 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
+                />
               {/if}
-              <div class="mt-2 md:mt-0">
-                <h4 class="font-semibold mb-1">{detail.title}</h4>
-                <p class="text-sm text-gray-700">{@html detail.text}</p>
+              <div class="mt-3 md:mt-0">
+                <h4 class="text-lg font-semibold text-yellow-900 mb-2">{detail.title}</h4>
+                <p class="text-sm text-yellow-800 leading-relaxed">{@html detail.text}</p>
               </div>
             </div>
           {/each}
@@ -127,9 +153,8 @@
 {/if}
 
 <style>
-  /* Animations simples (ajoute-les aussi dans tailwind.config.js pour production) */
-  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes scale-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .animate-fade-in { animation: fade-in 0.2s ease-out; }
-  .animate-scale-in { animation: scale-in 0.2s ease-out; }
+  @keyframes fade-in { from { opacity: 0; transform: translateY(-10px);} to { opacity:1; transform: translateY(0);} }
+  @keyframes scale-up { from { opacity: 0; transform: scale(0.9);} to { opacity:1; transform: scale(1);} }
+  .animate-fade-in { animation: fade-in 0.3s ease-out; }
+  .animate-scale-up { animation: scale-up 0.3s cubic-bezier(0.4,0,0.2,1); }
 </style>
