@@ -135,7 +135,7 @@ export const projects = [
   {
     id: 'xcube',
     title: "XCube : application Android",
-    teaser: "Imaginez Tic Tac Toe, mais équilibré pour les 2 joueurs, et avec une rejouabilite infinie !",
+    teaser: "Imaginez Tic Tac Toe, mais équilibré pour les 2 joueurs, et avec une rejouabilité infinie !",
     tags: ["Java", "MachineLearning", "GameDesign"],
     imageUrl: "/itchio.png",
     link: "https://github.com/ton-utilisateur/ecogame",
