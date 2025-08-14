@@ -96,13 +96,13 @@
          style:opacity={$animationDone ? 0 : 1}
          style:transform={$animationDone ? 'translateY(-800px)' : 'translateY(0)'}>
       <div class="terminal bg-[#1e1e1e] p-6 rounded-lg shadow-2xl">
-        <div class="text-blue-400 mb-4 text-3xl">
+        <div class="text-blue-400 mb-4 text-2xl md:text-3xl">
           $ kubectl get pods
         </div>
-        <div class="text-3xl">
-          <span class="text-red-800">Network Error: </span><span class="ml-2 "> scroll more to continue...</span>
+        <div class="text-2xl md:text-3xl">
+          <span class="text-red-800">Network Error: </span><span class="ml-2">scroll more to continue...</span>
         </div>
-        <div class="mt-4 text-blue-400 text-3xl">
+        <div class="mt-4 text-blue-400 text-2xl md:text-3xl">
           $ {$typedName}<span class="cursor-blink">▋</span>
         </div>
       </div>
@@ -136,27 +136,27 @@
   </div>
 
   <!-- MOBILE STRIP (when side marquees hidden) -->
-  <div class="md:hidden fixed bottom-4 left-0 right-0 gap-3 overflow-x-auto px-4 pb-2 z-40 overflow-hidden ">
+  <div class="md:hidden fixed bottom-4 left-0 right-0 gap-3 overflow-x-auto px-4 pb-2 z-40 overflow-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
     <div class="marquee marquee-left flex items-center">
       {#each leftLogos as logo}
         <div class="px-1 flex items-center">
           <img 
             src={logo} 
             alt="logo tech" 
-            class="h-16 w-auto max-w-16 bg-gradient-to-b from-white via-neutral-100 to-white/90 rounded-xl shadow-lg p-1 hover:scale-110 hover:-rotate-6 hover:shadow-2xl transition object-contain"
+            class="h-20 w-auto max-w-20 bg-gradient-to-b from-white via-neutral-100 to-white/90 rounded-xl shadow-lg p-1 hover:scale-110 hover:-rotate-6 hover:shadow-2xl transition object-contain"
           />
         </div>
       {/each}
     </div>
   </div>
-  <div class="md:hidden fixed bottom-24 left-0 right-0 gap-3 overflow-x-auto px-4 pb-2 z-40 overflow-hidden ">
+  <div class="md:hidden fixed bottom-28 left-0 right-0 gap-3 overflow-x-auto px-4 pb-2 z-40 overflow-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
     <div class="marquee marquee-right flex items-center">
       {#each rightLogos as logo}
         <div class="px-1 flex items-center">
           <img 
             src={logo} 
             alt="logo tech" 
-            class="h-16 w-auto max-w-16 bg-gradient-to-b from-white via-neutral-100 to-white/90 rounded-xl shadow-lg p-1 hover:scale-110 hover:-rotate-6 hover:shadow-2xl transition object-contain"
+            class="h-20 w-auto max-w-20 bg-gradient-to-b from-white via-neutral-100 to-white/90 rounded-xl shadow-lg p-1 hover:scale-110 hover:-rotate-6 hover:shadow-2xl transition object-contain"
           />
         </div>
       {/each}

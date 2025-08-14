@@ -23,7 +23,7 @@
 
 </script>
 
-<div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-4 mx-auto text-center mt-5">
+<div class="flex flex-col items-center max-w-110 w-3/4 lg:w-2/5 xl:w-2/7 p-4 mx-auto text-center mt-5">
   <div class="relative [perspective:800px] w-full group">
     <div
     class="transition-transform duration-500 group-hover:-translate-y-10 group-hover:-rotate-5 "
@@ -39,7 +39,7 @@
     </div>
     <!-- façade avant avec effet 3D -->
     <button
-      class="relative block m-auto bg-yellow-300 border border-yellow-500 shadow-lg rounded-xl overflow-visible focus:outline-none [transform-style:preserve-3d] transition-all duration-500 group-hover:rotate-[-1.5deg] group-hover:scale-105"
+      class="relative block w-full m-auto bg-yellow-300 border border-yellow-500 shadow-lg rounded-xl overflow-visible focus:outline-none [transform-style:preserve-3d] transition-all duration-500 group-hover:rotate-[-1.5deg] group-hover:scale-105"
       on:click={open} on:focusout={handleDropdownFocusLoss} tabindex="0"
       style="box-shadow: 0 8px 24px rgba(140,108,52,0.18); transform: rotateX(-4deg) translateY(6px) scale(1.02);"
     >
@@ -75,7 +75,6 @@
 </div>
 
 {#if isOpen}
-  <!-- Overlay moderne -->
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
