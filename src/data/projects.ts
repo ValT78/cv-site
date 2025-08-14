@@ -72,7 +72,7 @@ export const projects = [
     details: [
       {
         title: "Objectif",
-        text: "En recherche, il est nécessaire de répéter les mêmes expériences en faisant juste varier les paramètres. Mon rôle a été de créer leur environnement et d'automatiser la plupart de leur tâches, pour qu'ils puissent se concentrer sur la recherche.",
+        text: "En recherche, il est nécessaire de répéter les mêmes expériences en faisant juste varier les paramètres. Mon rôle a été de créer l'environnement et d'automatiser la plupart des tâches de Machine Learning, pour que les thésards puissent se concentrer sur la recherche.",
       },
       {
         title: "Pipelines pour l'IA avec Argo",
@@ -104,11 +104,33 @@ export const projects = [
   },
   {
     id: 'rupture',
-    title: "Rupture : jeu écologique",
-    teaser: "Objectif : Faire ressentir la dépendance de nos sociétés aux ressources naturels de manière immersive. <br>6 mois de travail, 15 pages de dialogues, de vrais personnes utilisés pour modéliser, animer et enregistrer les voix des personnages. Nous avons créé un Open World sur Unreal Engine 5 pour servir l'histoire et l'expérience de jeu.",
-    tags: ["ELK", "Grafana", "Ansible", "Python"],
+    title: "Rupture : Jeu Unreal Engine",
+    teaser: "En équipe de 4, nous voulions faire ressentir la dépendance de nos sociétés aux ressources naturels, à travers une aventure ultra-réaliste et immersive.",
+    tags: ["Unreal Engine", "Scénarisation", "Ansible", "Python"],
     imageUrl: "/observabilite.png",
-    link: "https://github.com/ton-utilisateur/monitoring-platform"
+    link: "https://github.com/ton-utilisateur/monitoring-platform",
+    images: [
+      '/exp/cern-infra.png',
+      '/exp/cern-dataflow.png'
+    ],
+    details: [
+      {
+        title: "6 mois de travail",
+        text: "Je me suis chargé de rédiger 15 pages de scénario, dépeignant un univers pré-apocalyptique, 4 personnages, et 10 figurants. On découvre une ville futuriste dépendante de la technologie, ce qui va causer son effondrement.",
+      },
+      {
+        title: "Un Open World 3D",
+        text: "Le jeu alterne entre des cinématique 3D, des mini jeux, et des phases en Open World (J'ai réalisé entièrement ce dernier). Les graphismes très réalises participent à rendre l'univers crédible.",
+      },
+      {
+        title: "Unreal et outils no code",
+        text: "Pour le développement, j'ai choisi d'utiliser les intégrations no code de Unreal, qui m'ont permis de développer plusieurs segments du jeu en un temps réduit.",
+      },
+      {
+        title: "Vrais acteurs et animations IA",
+        text: "Les dialogues ont tous été enregistré par notre entourage, pour en ressentir l'impact dans le jeu. Nous avons également filmé les mouvements de leur visage, pour animer les personnages dans le jeu grâce à une IA spécialisée",
+      },
+    ]
   },
   {
     id: 'evolis',
