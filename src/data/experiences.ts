@@ -1,8 +1,8 @@
 export const experiences = [
   {
     id: 'cns',
-    title: 'CNS Communications – Alternance',
-    dates: 'Octobre 2024 – Maintenant',
+    title: 'CNS Communications - Alternance',
+    dates: 'Octobre 2024 - Maintenant',
     teaser: "J'ai développé une plateforme d'observabilité Open source sur Kubernetes",
     companyLogo: '/logos/cns.png',
     tags: ['Kubernetes', 'ArgoCD', 'Opentelemetry', 'Grafana', 'Prometheus', 'Python'],
@@ -71,6 +71,10 @@ export const experiences = [
         text: 'Je devais administrer nos serveurs DHCP/DNS/Mail virtualisés sur Proxmox. Le monitoring est réalisé sur Zabbix et ElasticStack'
       },
       {
+        title: 'Création et maintient des services webs',
+        text: "Se référer à mes projets : j'ai mis à jour plusieurs services frontend+backend et ajouté des fonctionnalités. J'ai créé formations.minet.net"
+      },
+      {
         title: 'Organiser/Animer +25 formations',
         text: "Chaque année, il faut former les nouveaux membres de l'association pour qu’ils maintiennent à leur tour la production. J’ai décidé de renouveler entièrement nos méthodes de formations, en remplaçant les présentation théoriques basiques, par des travaux pratiques concrets. J'en ai rédigé 8.",
       }
@@ -94,8 +98,8 @@ export const experiences = [
         text: "Nouvelle fonctionnalité de <strong>compression</strong> ajoutée sur le cloud utilisé par les scientifiques du CERN : Mon rôle était de l'implémenter et d'automatiser la compression des donnéees via du <u>scripting Bash</u>.",
       },
       {
-        title: 'Monitoring à échelle',
-        text: 'Déploiement de Prometheus et Grafana pour la supervision de services distribués. Compression de 8 Po de données.'
+        title: 'Monitoring et scalabilité',
+        text: "Monitoring de la progression de la compression grâce à Prometheus et Grafana. Déploiement de plusieurs VMs en parallèle avec Puppet pour accélérer le processus"
       }
     ]
   },
@@ -123,7 +127,7 @@ export const experiences = [
     ]
   },
   {
-    id: 'md',
+    id: 'desserts',
     title: 'Mademoiselle Desserts - Stage',
     dates: 'Juillet - Août 2023',
     teaser: "Infogérence et supervision de l'infrastructure",
