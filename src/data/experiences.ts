@@ -23,6 +23,10 @@ export const experiences = [
       {
         title: 'Déploiement sur Kubernetes',
         text: "La plateforme fonctionne sur Kubernetes en respectant la philosophie <strong>GitOps</strong> avec <u>ArgoCD</u>. Je suis passé par les Helms charts officiels quand c'était possible pour déployer les différents outils.",
+      },
+      {
+        title: 'Automatisation Cluster VMWare',
+        text: "Création de script Ansible pour gérer le cycle de vie des VMs (création, prolongation, suppression). Intégration avec Netbox (ajout des VMs dans l’inventaire) et AWX (n’importe qui peut exécuter ces scripts et choisir des variables)",
       }
     ]
   },
@@ -51,7 +55,7 @@ export const experiences = [
     dates: '2022 - 2024',
     teaser: "Une infrastructure réseau et des services web, gérés par des étudiants. J'étais <strong>responsable Web et Formations</strong>.",
     companyLogo: '/logos/minet.avif',
-    tags: ['Linux', 'Bash', 'Grafana', 'Puppet'],
+    tags: ['Linux', 'Bash', 'Proxmox', 'Cisco', 'Zabbix', 'ElasticStack', 'Formateur'],
     githubLink: 'https://github.com/ValT78/cern-automation',
     images: [
       '/exp/cern-infra.png',
@@ -60,15 +64,19 @@ export const experiences = [
     details: [
       {
         title: 'Infrastructure 8 bâtiments',
-        text: "Il fallait quotidiennement gérer les incidents, superviser l'infrastructure et gérer les sauvegardes. <br>J'ai pris part au remplacement des switches réseau, configuré des PCs d'usine, et participé à la migration de l'intranet vers <u>Sharepoint</u> en utilisant <u>Powershell</u>.",
+        text: "Nous gérons une infrastructure pour 800 adhérents avec des switchs, routeurs, WLC Cisco, des serveurs Linux.",
       },
       {
-        title: 'Monitoring à échelle',
-        text: 'Déploiement de Prometheus et Grafana pour la supervision de services distribués. Compression de 8 Po de données.'
+        title: '+100 VM/CT de production',
+        text: 'Je devais administrer nos serveurs DHCP/DNS/Mail virtualisés sur Proxmox. Le monitoring est réalisé sur Zabbix et ElasticStack'
       },
       {
         title: 'Création et maintient des services webs',
         text: "Se référer à mes projets : j'ai mis à jour plusieurs services frontend+backend et ajouté des fonctionnalités. J'ai créé formations.minet.net"
+      },
+      {
+        title: 'Organiser/Animer +25 formations',
+        text: "Chaque année, il faut former les nouveaux membres de l'association pour qu’ils maintiennent à leur tour la production. J’ai décidé de renouveler entièrement nos méthodes de formations, en remplaçant les présentation théoriques basiques, par des travaux pratiques concrets. J'en ai rédigé 8.",
       }
     ]
   },
