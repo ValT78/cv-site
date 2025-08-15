@@ -48,7 +48,7 @@
         <p class="text-sm text-gray-500 text-center">{exp.dates}</p>
       </div>
       <div class="min-h-12 w-20 h-full rounded-2xl bg-white flex items-center justify-center shadow-lg ring-2 ring-blue-400 ml-4 p-1 group-hover:scale-110 transition-transform duration-300">
-        <img src={exp.companyLogo} alt={exp.title} class="max-w-[20] h-full object-cover"/>
+        <img src={exp.companyLogo} alt={exp.title} class="max-w-20 h-full object-cover"/>
       </div>
     </div>
     <p class="text-lg font-semibold text-blue-700 italic mb-4">{@html exp.teaser}</p>

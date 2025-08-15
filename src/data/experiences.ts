@@ -86,7 +86,7 @@ export const experiences = [
     dates: 'Juin - Septembre 2024',
     teaser: 'Automatisation et monitoring pour compresser le cloud du CERN',
     companyLogo: '/logos/cern.png',
-    tags: ['Linux', 'Bash', 'Grafana', 'Puppet'],
+    tags: ['Rhel', 'Bash', 'Prometheus', 'Grafana', 'Puppet'],
     githubLink: 'https://github.com/ValT78/cern-automation',
     images: [
       '/exp/cern-infra.png',

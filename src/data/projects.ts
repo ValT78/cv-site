@@ -98,7 +98,7 @@ export const projects = [
     id: 'cell',
     title: "Vice Président du CELL",
     teaser: "Club de création de jeux de l'école. Organisation de formation. Participation à 9 Game Jams (création d'un jeu en équipe en 48h).",
-    tags: ["Kubernetes", "ArgoCD", "Prometheus", "Grafana"],
+    tags: ["Formateur", "Game Design", "Unity"],
     imageUrl: "/k8s-cluster.png",
     link: "https://github.com/ton-utilisateur/k8s-ia"
   },

@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
-  import { tweened } from 'svelte/motion';
-  import { cubicOut } from 'svelte/easing';
+
+  import profil from '../assets/profil.png';
 
   // Technologies logos
   // Import all PNG logos from /src/assets/techno-logo
@@ -182,7 +182,7 @@
     <div class="relative group mb-4">
       <div class="absolute -inset-4 rounded-full bg-gradient-to-tr from-blue-800 via-sky-400 to-gray-800 opacity-60 blur-2xl animate-pulse z-0"></div>
     <img 
-      src="/src/assets/profil.png" 
+      src={profil}
       alt="profil Valentin Lantigny"
       class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-blue-400 transform transition duration-700 hover:scale-105 hover:rotate-2 animate-[float_6s_ease-in-out_infinite] z-10 relative"
     />
