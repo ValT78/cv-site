@@ -8,8 +8,10 @@ export const experiences = [
     tags: ['Kubernetes', 'ArgoCD', 'Opentelemetry', 'Grafana', 'Prometheus', 'Python'],
     githubLink: 'https://github.com/ValT78/observability-platform',
     images: [
-      '/exp/cns-dashboard.png',
-      '/exp/cns-architecture.png'
+      '/src/assets/projets/observability.jpeg',
+      '/src/assets/projets/plateforme-obs2.png',
+      '/src/assets/projets/argo-schema.png',
+      '/src/assets/techno-logo/awx.png'
     ],
     details: [
       {
@@ -44,8 +46,12 @@ export const experiences = [
     ],
     details: [
       {
-        title: 'Objectif',
-        text: "Créer un jeu vidéo pour sensibiliser aux écogestes et à l'économie d'électricité.",
+        title: 'Moserniser un jeu 3D',
+        text: "Enedis possédait un ancien jeu de 2008, peu ergonomique et dictatique, sans code source. J'ai recréé le jeu, avec un gameplay prenant, et qui implique le joueur pour qu'il apprenne de son expérience.",
+      },
+      {
+        title: 'Livrable régulier',
+        text: "J'ai livré des versions jouables toutes les 2 semaines, avec des points de suivi réguliers pour valider les fonctionnalités et le design.",
       },
     ]
   },

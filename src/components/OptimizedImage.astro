@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+
+const { src, alt, widths = [320, 640, 1024, 1920], sizes = "(max-width: 768px) 100vw, 768px", loading = "lazy", className = "" } = Astro.props;
+---
+
+<Image
+  src={src}
+  alt={alt}
+  widths={widths}
+  sizes={sizes}
+  loading={loading}
+  class={className}
+/>

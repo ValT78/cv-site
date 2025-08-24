@@ -52,8 +52,8 @@
     </div>
 
     <!-- Image en haut (comme une vignette dans le dossier) -->
-    <div class="w-full overflow-hidden rounded-t-lg p-6 bg-yellow-200 border-b border-yellow-400 z-20">
-      <img src={proj.imageUrl} alt="preview" class="w-full transition-transform duration-300 group-hover:scale-105 rounded shadow" />
+    <div class="w-full overflow-hidden rounded-t-lg p-2 bg-yellow-200 border-b border-yellow-400 z-20 flex justify-center">
+      <img src={proj.imageUrl} alt="preview" class="w-auto max-h-48 transition-transform duration-300 group-hover:scale-105 rounded shadow" />
     </div>
 
     <!-- Contenu du projet -->
@@ -112,25 +112,25 @@
         <!-- tags animés -->
         <div class="flex flex-wrap gap-2">
           {#each proj.tags as tag}
-            <span class="bg-gradient-to-r from-yellow-700 to-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow animate-fade-in hover:scale-110 transition-transform duration-200 cursor-pointer">
-              {tag}
-            </span>
-          {/each}
+          <span class="bg-gradient-to-r from-yellow-700 via-yellow-500 to-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded-full shadow hover:scale-120 hover:bg-yellow-800 hover:bg-none transition-transform duration-200 cursor-pointer">
+            {tag}
+          </span>
+        {/each}
         </div>
 
         <!-- lien stylisé -->
-        <a
+        <!-- <a
           href={proj.link}
           target="_blank"
           class="inline-block font-medium text-yellow-800 underline-offset-2 hover:underline transition-all"
         >
           Voir le site →
-        </a>
+        </a> -->
 
         <!-- sections détaillées -->
         <div class="space-y-8">
           {#each proj.details as detail, i}
-            <div class="md:flex md:space-x-6 items-start">
+            <div class="md:flex md:space-x-6 items-start {i % 2 ? 'md:flex-row-reverse' : ''}">
               {#if proj.images[i]}
                 <img
                   src={proj.images[i]}

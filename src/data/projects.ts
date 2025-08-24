@@ -6,7 +6,7 @@ export const projects = [
     id: 'formations',
     title: "formations.minet.net",
     teaser: "Site web d'hébergements des formations dispensées par l'association MiNET (j'en ai réalisé certaines :p)",
-    imageUrl: '/logos/md.png',
+    imageUrl: '/src/assets/projets/formation-interface.png',
     tags: ['Frontend: Astro', 'Backend: Python', 'CICD Gitlab', 'nginx'],
     link: 'https://formations.minet.net',
     images: [
@@ -33,7 +33,7 @@ export const projects = [
     title: "Mise à jour du IAAS de MiNET : hosting.minet.net",
     teaser: "J'ai ajouté optimisé, documenté, et ajouté des features sur notre plateforme d'hébergement de VM pour nos adhérents.",
     tags: ["Frontend: Angular", "Backend: Flask", "OpenAPI", "Proxmox", "IAAS", "CICD Gitlab", "Jenkins"],
-    imageUrl: "/projects/cern-automation.png",
+    imageUrl: "/src/assets/projets/hosting-interface.png",
     link: "https://github.com/ValT78/cern-automation",
     images: [
       '/exp/cern-infra.png',
@@ -62,12 +62,14 @@ export const projects = [
     id: 'mlops',
     title: "MLOps sur Kubernetes pour des thésards en IA",
     teaser: "J'ai déployé un cluster de GPU sur Kubernetes de A à Z",
-    tags: ["Kubernetes", "Argo Workflow", "MLOps", "Automatisation", "ArgoCD", "Helm", "Linus", "CiCD Gitlab", "Harbor"],
-    imageUrl: "/projects/cern-automation.png",
+    tags: ["Kubernetes", "Argo Workflow", "MLOps", "GPU", "Automatisation", "ArgoCD", "Helm", "Linux", "CiCD Gitlab", "Harbor"],
+    imageUrl: "/src/assets/projets/kubeia.jpeg",
     link: "https://github.com/ValT78/cern-automation",
     images: [
-      '/exp/cern-infra.png',
-      '/exp/cern-dataflow.png'
+      '/src/assets/projets/argo-workflows.png',
+      '/src/assets/projets/argo-workflows.jpg',
+      '/src/assets/projets/harbor-schema.png',
+      '/src/assets/projets/argo-schema.png',
     ],
     details: [
       {
@@ -189,11 +191,11 @@ export const projects = [
     title: "Autoformation en Cybersécurité",
     teaser: "J'adore résoudre des challenges, notamment en Cryptographie et en Web.",
     tags: ["CTF", "Hacking", "Cryptographie"],
-    imageUrl: "/ctf.png",
+    imageUrl: "/src/assets/projets/ctf.jpeg",
     link: "https://github.com/ton-utilisateur/ecogame",
     images: [
-      '/exp/cern-infra.png',
-      '/exp/cern-dataflow.png'
+      '/src/assets/projets/404ctf.jpg',
+      '/src/assets/projets/hackropole.png'
     ],
     details: [
       {
@@ -211,7 +213,7 @@ export const projects = [
     title: "Cours de Docker et Kubernetes ",
     teaser: "J'ai suivi le cours Udemy pour passer la CKA (Certification Kubernetes)",
     tags: ["Kubernetes", "Docker"],
-    imageUrl: "/certifications.png",
+    imageUrl: "/src/assets/projets/cka.webp",
     link: "https://github.com/ton-utilisateur/ecogame",
   },
   {
@@ -219,7 +221,7 @@ export const projects = [
     title: "CCNA : Certification Cisco",
     teaser: "Notions avancées d'architecture et de configuration réseau : TPs sur le routage, VLANs, QoS, IPv6, etc.",
     tags: ["Réseau", "Cisco"],
-    imageUrl: "/ccna.png",
+    imageUrl: "/src/assets/projets/ccna.png",
     link: "https://github.com/ton-utilisateur/ecogame"
   }
 ]}]

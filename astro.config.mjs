@@ -1,8 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
-
-import react from "@astrojs/react";
+import image from '@astrojs/image';
 
 import svelte from "@astrojs/svelte";
 
@@ -20,5 +19,5 @@ vite: {
   },
 },
 
-  integrations: [react(), svelte()],
+  integrations: [image(), svelte()],
 });

@@ -4,10 +4,9 @@
 
   import profil from '../assets/profil.png';
 
+
   // Technologies logos
-  // Import all PNG logos from /src/assets/techno-logo
-  // Load logos dynamically from assets folder
-  const logos = import.meta.glob('/src/assets/techno-logo/*', { eager: true, as: 'url' });
+  const logos = import.meta.glob('/src/assets/techno-logo/*', { eager: true, query: '?url', import: 'default' });
   const techLogos = Object.values(logos);
   let banners = [
     "Passioné par la manière dont l'être humain apprend",
@@ -33,7 +32,6 @@
   function enableScroll() {
     window.onscroll = null;
     scrollLocked = false;
-    console.log("Scroll enabled");
   }
 
   onMount(() => {
@@ -100,7 +98,7 @@
           $ kubectl get pods
         </div>
         <div class="text-2xl md:text-3xl">
-          <span class="text-red-800">Network Error: </span><span class="ml-2">scroll more to continue...</span>
+          <span class="text-red-800">Network Error: </span><span class="ml-2">scroll more to fix the issue...</span>
         </div>
         <div class="mt-4 text-blue-400 text-2xl md:text-3xl">
           $ {$typedName}<span class="cursor-blink">▋</span>
@@ -181,11 +179,7 @@
     <!-- halo -->
     <div class="relative group mb-4">
       <div class="absolute -inset-4 rounded-full bg-gradient-to-tr from-blue-800 via-sky-400 to-gray-800 opacity-60 blur-2xl animate-pulse z-0"></div>
-    <img 
-      src={profil}
-      alt="profil Valentin Lantigny"
-      class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-blue-400 transform transition duration-700 hover:scale-105 hover:rotate-2 animate-[float_6s_ease-in-out_infinite] z-10 relative"
-    />
+      <img src={profil.src} alt="profil" client:only="svelte" class="w-48 h-48 rounded-full shadow-lg object-cover border-4 border-blue-400 transform transition duration-700 hover:scale-105 hover:rotate-2 animate-[float_6s_ease-in-out_infinite] z-10 relative" />
   </div>
 
     <h1 class="text-3xl md:text-5xl font-extrabold pb-2 bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-pink-400 to-sky-400 animate-gradient">
